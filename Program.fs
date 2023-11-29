@@ -13,3 +13,8 @@ type Genre =
     | Comedy
     | Fantasy
     | Sport
+
+record Director(
+    string Name,
+    int Movies
+)
