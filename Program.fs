@@ -41,3 +41,6 @@ let moviesData = [
     {Title = "Licorice Pizza"; Duration = 133; Genre = Comedy; FilmDirector = findDirectorByName "Paul Thomas Anderson"; IMDbScore = 7.4; Year = 2022}
     {Title = "Nightmare Alley"; Duration = 150; Genre = Thriller; FilmDirector = findDirectorByName "Guillermo Del Toro"; IMDbScore = 7.1; Year = 2023}
 ]
+let potentialWinners =
+    moviesData
+    |> List.filter (fun movie -> movie.IMDBScore > 7.4)
