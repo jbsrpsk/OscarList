@@ -44,3 +44,13 @@ let moviesData = [
 let potentialWinners =
     moviesData
     |> List.filter (fun movie -> movie.IMDBScore > 7.4)
+
+let formatDuration (minutes: int) =
+    let hours = minutes / 60
+    let remainingMinutes = minutes % 60
+    sprintf "%dh %dmin" hours remainingMinutes
+
+let durationInHours =
+    moviesData
+    |> List.map (fun movie -> formatDuration movie.Duration)
+
