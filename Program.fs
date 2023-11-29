@@ -6,19 +6,21 @@
     | Fantasy
     | Sport
 
-record Director(
-    Name: string,
+type Director = {
+    Name: string
     Movies: int
-)
+}
 
-record OsMovies(
-    Name: string,
-    Year: int,
-    Director: Director,
+type Movie = {
+    Title: string
+    Duration: int
     Genre: Genre
-)
+    FilmDirector: Director
+    IMDbScore: float
+    Year: int
+}
 
-let directors = [
+let directors : Director list = [
     {Name = "Sian Heder"; Movies = 9}
     {Name = "Kenneth Branagh"; Movies = 23}
     {Name = "Adam McKay"; Movies = 27}
@@ -31,7 +33,7 @@ let directors = [
 
 let findDirectorByName name = directors |> List.find (fun director -> director.Name = name)
 
-let moviesData = [
+let moviesData : Movie list = [
     {Title = "CODA"; Duration = 111; Genre = Drama; FilmDirector = findDirectorByName "Sian Heder"; IMDbScore = 8.1; Year = 2023}
     {Title = "Belfast"; Duration = 98; Genre = Comedy; FilmDirector = findDirectorByName "Kenneth Branagh"; IMDbScore = 7.3; Year = 2022}
     {Title = "Don’t Look Up"; Duration = 138; Genre = Comedy; FilmDirector = findDirectorByName "Adam McKay"; IMDbScore = 7.2; Year = 2022}
@@ -41,9 +43,10 @@ let moviesData = [
     {Title = "Licorice Pizza"; Duration = 133; Genre = Comedy; FilmDirector = findDirectorByName "Paul Thomas Anderson"; IMDbScore = 7.4; Year = 2022}
     {Title = "Nightmare Alley"; Duration = 150; Genre = Thriller; FilmDirector = findDirectorByName "Guillermo Del Toro"; IMDbScore = 7.1; Year = 2023}
 ]
-let potentialWinners =
+
+let potentialOscarWinners =
     moviesData
-    |> List.filter (fun movie -> movie.IMDBScore > 7.4)
+    |> List.filter (fun movie -> movie.IMDbScore > 7.4)
 
 let formatDuration (minutes: int) =
     let hours = minutes / 60
@@ -51,6 +54,11 @@ let formatDuration (minutes: int) =
     sprintf "%dh %dmin" hours remainingMinutes
 
 let durationInHours =
-    moviesData
+    potentialOscarWinners
     |> List.map (fun movie -> formatDuration movie.Duration)
 
+printfn "Potential Oscar Winners: "
+potentialOscarWinners |> List.iter (fun movie -> printfn "%s" movie.Title)
+
+printfn "\nMovie Length Formatted: "
+durationInHours |> List.iter (printfn "%s")
