@@ -18,3 +18,10 @@ record Director(
     string Name,
     int Movies
 )
+record Movie(
+    string Name,
+    int RunLength,
+    Genre Genre,
+    Director Director,
+    float IMDbRating
+)
