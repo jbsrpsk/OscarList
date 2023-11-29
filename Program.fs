@@ -58,7 +58,7 @@ let durationInHours =
     |> List.map (fun movie -> formatDuration movie.Duration)
 
 printfn "Potential Oscar Winners: "
-potentialOscarWinners |> List.iter (fun movie -> printfn "%s" movie.Title)
+potentialOscarWinners |> List.iter (fun movie -> printfn "%s (%d) - IMDb: %f" movie.Title movie.Year movie.IMDbScore)
 
 printfn "\nMovie Length Formatted: "
 durationInHours |> List.iter (printfn "%s")
